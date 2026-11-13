@@ -30,7 +30,7 @@ python demo.py
 python -m unittest discover -s tests -v
 ```
 
-The script prints metrics and creates the `artifacts/` folder. **The author must run and inspect these outputs before claiming tested numerical results.** `artifacts/`, `.venv/`, and cache files are not committed.
+The script prints metrics and creates the `artifacts/` folder. **Verified in GitHub Actions on 2026-11-13:** the unit tests and end-to-end synthetic pipeline completed successfully on Python 3.11 (Linux). The values below are for synthetic data only. `artifacts/`, `.venv/`, and cache files are not committed.
 
 ## Design choices / trade-offs
 
@@ -51,3 +51,20 @@ The script prints metrics and creates the `artifacts/` folder. **The author must
 | Can another engineer inspect your result? | Exported metrics, predictions, fixed random seed, readable code |
 
 **Next integration step:** Replace synthetic data with the previously developed industrial fault classification prototype and its real source dataset, validate the claim F1 0.511→0.649 separately, then develop serving and monitoring layers. Do not combine the original prototype's metrics with these synthetic test metrics.
+
+## Verified synthetic test results (GitHub Actions)
+
+These are outputs from the automated run on 2026-11-13, **not** measurements from factory equipment.
+
+| Held-out test metric | Default threshold 0.50 | Validation cost-selected threshold 0.22 |
+| --- | ---: | ---: |
+| Precision | 0.697 | 0.655 |
+| Recall | 0.958 | 1.000 |
+| F1 | 0.807 | 0.791 |
+| False alarms | 30 | 38 |
+| Missed warnings | 3 | 0 |
+| Assumed total cost (CNY) | 27,000 | 11,400 |
+
+**Interpretation:** Under the explicitly assumed false-alarm/miss costs (CNY 300/6,000), the validation-selected threshold reduced simulated held-out cost by approximately **57.8%**, at the expense of eight additional false alarms and a lower F1. This is **not** evidence of savings at any real factory. The data generator intentionally embeds a detectable signal; future validation with authentic sensor data is essential.
+
+CI run: https://github.com/13699711225/john-zhu-ml-portfolio/actions/runs/43394532524
