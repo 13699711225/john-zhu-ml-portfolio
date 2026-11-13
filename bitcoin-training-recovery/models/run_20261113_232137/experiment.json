@@ -1,0 +1,34 @@
+{
+  "dataset": "Elliptic Bitcoin",
+  "epochs": 300,
+  "rf_trees": 100,
+  "input_features": 166,
+  "embedding_dimension": 128,
+  "training_timesteps": 34,
+  "testing_timesteps": 15,
+  "scaler": "Training timesteps only",
+  "random_seed": 42,
+  "results": {
+    "DNE": {
+      "precision": 0.45454545454545453,
+      "recall": 0.023084025854108958,
+      "f1": 0.043936731107205626,
+      "auc": 0.7600200548305963,
+      "input_features": 128
+    },
+    "LF+DNE": {
+      "precision": 0.9585492227979274,
+      "recall": 0.6832871652816251,
+      "f1": 0.7978436657681941,
+      "auc": 0.9143564720961859,
+      "input_features": 222
+    },
+    "AF+DNE": {
+      "precision": 0.9865951742627346,
+      "recall": 0.6795937211449676,
+      "f1": 0.8048113723346091,
+      "auc": 0.9260081663573494,
+      "input_features": 294
+    }
+  }
+}
