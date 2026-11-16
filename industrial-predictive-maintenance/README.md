@@ -4,6 +4,13 @@
 
 **Important distinction:** This is a newly created **synthetic-data demonstration**, **not a real Flex factory project**, not a production installation, and not the earlier AI4I-based experiment with reported F1 0.511→0.649 / simulated cost −27%. The synthetic simulator is designed to contain an informative deterioration signal. Its test results must **not** be represented as real-world evidence of model effectiveness.
 
+## Interview-ready engineering case study and research roadmap
+
+- [**Flex-oriented interview case study (English)**](FLEX_INTERVIEW_CASE_STUDY.md) — five-slide narrative, measurable reliability KPIs, English technical Q&A, a conditional 90-day proposal, and an explicit boundary between simulated results and factory claims.
+- [**Industrial GNN / GDN research roadmap**](INDUSTRIAL_GNN_ROADMAP.md) — sensor-graph hypothesis, RF-first comparison, time-aware validation, graph ablations, and acceptance gates before claiming value.
+
+These are **independent interview and research materials**. Neither document implies collaboration with Flex, access to Flex manufacturing data, or a deployed GNN system.
+
 ## Business problem
 
 An industrial team needs an early warning when a machine may fail within the next six hours. False alerts waste inspection effort, while missed events can lead to unplanned downtime. Here, *assumed illustration-only costs* are CNY 300 per false alert and CNY 6,000 per miss; these are **not measured customer or factory costs**.
