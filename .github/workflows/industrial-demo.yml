@@ -1,0 +1,35 @@
+name: Industrial demo smoke test
+on:
+  push:
+    paths:
+      - 'industrial-predictive-maintenance/**'
+      - '.github/workflows/industrial-demo.yml'
+  pull_request:
+    paths:
+      - 'industrial-predictive-maintenance/**'
+      - '.github/workflows/industrial-demo.yml'
+jobs:
+  run-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'industrial-predictive-maintenance/requirements.txt'
+      - name: Install dependencies
+        working-directory: industrial-predictive-maintenance
+        run: python -m pip install -r requirements.txt
+      - name: Unit tests
+        working-directory: industrial-predictive-maintenance
+        run: python -m unittest discover -s tests -v
+      - name: Run end-to-end synthetic pipeline
+        working-directory: industrial-predictive-maintenance
+        run: python demo.py
+      - name: Verify exported artifacts
+        working-directory: industrial-predictive-maintenance
+        run: |
+          test -s artifacts/metrics.json
+          test -s artifacts/test_predictions.csv
+          test -s artifacts/model.joblib
