@@ -24,6 +24,9 @@ jobs:
       - name: Unit tests
         working-directory: industrial-predictive-maintenance
         run: python -m unittest discover -s tests -v
+      - name: AI4I baseline offline tests
+        working-directory: industrial-predictive-maintenance
+        run: python -m unittest discover -s tests -p 'test_ai4i_baseline.py' -v
       - name: Run end-to-end synthetic pipeline
         working-directory: industrial-predictive-maintenance
         run: python demo.py
