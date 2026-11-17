@@ -2,11 +2,11 @@
 
 **Purpose:** Show a manufacturing-oriented ML workflow: sensor data → past-only feature engineering → chronological train/validation/test split → failure risk model → maintenance-cost threshold → auditable predictions.
 
-**Important distinction:** This is a newly created **synthetic-data demonstration**, **not a real Flex factory project**, not a production installation, and not the earlier AI4I-based experiment with reported F1 0.511→0.649 / simulated cost −27%. The synthetic simulator is designed to contain an informative deterioration signal. Its test results must **not** be represented as real-world evidence of model effectiveness.
+**Important distinction:** This is a synthetic-data engineering demonstration, not a production installation or an evaluation on real factory equipment. The simulator intentionally embeds an informative deterioration signal; its test results must **not** be represented as field evidence of model effectiveness.
 
 ## New: public AI4I fault-classification benchmark
 
-The new [AI4I baseline](AI4I_BASELINE.md) provides a separate, leakage-aware Random Forest classification experiment using the [UCI AI4I 2020 **synthetic** public dataset](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset). It excludes identifier and failure-mode target columns, performs stratified 60/20/20 train/validation/test splits, chooses an assumed-cost alert threshold on validation only, and exports model and held-out results. The full UCI CSV must be supplied locally and **official benchmark scores are not yet reported**; offline CI uses small fabricated fixtures only. This task predicts the **current-row machine failure label**, **not** a future six-hour event. It does not replace or revalidate the older AI4I experiment reported in the CV.
+The new [AI4I baseline](AI4I_BASELINE.md) provides a separate, leakage-aware Random Forest classification experiment using the [UCI AI4I 2020 **synthetic** public dataset](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset). It excludes identifier and failure-mode target columns, performs stratified 60/20/20 train/validation/test splits, chooses an assumed-cost alert threshold on validation only, and exports model and held-out results. The full UCI CSV must be supplied locally and **official benchmark scores are not yet reported**; offline CI uses small fabricated fixtures only. This task predicts the **current-row machine failure label**, **not** a future six-hour event.
 
 ```bash
 # After downloading the original CSV to data/ai4i2020.csv
@@ -17,7 +17,7 @@ python ai4i_baseline.py --csv data/ai4i2020.csv
 
 - [**Industrial GNN / GDN research roadmap**](INDUSTRIAL_GNN_ROADMAP.md) — sensor-graph hypothesis, RF-first comparison, time-aware validation, graph ablations, and acceptance gates before claiming value.
 
-This is independent research planning and does not imply collaboration with Flex, access to Flex manufacturing data, or a deployed GNN system.
+This is independent research planning; a sensor GNN has not yet been implemented or deployed.
 
 ## Business problem
 
@@ -55,7 +55,7 @@ The script prints metrics and creates the `artifacts/` folder. **Verified in Git
 - **How is leakage controlled?** Window features use no future rows, and final test labels are never used to select the decision threshold. The simulator's event schedule generates a deliberate precursor signal: this is synthetic signal design, not proof of realistic forecasting.
 - **What needs work before industrial use?** Verified equipment timestamps, actual failure/maintenance events, censoring and downtime handling, machine/batch-level validation, class-imbalance evaluation, lead-time requirements, calibration, monitoring, system integration, cybersecurity, and engineering review.
 
-## Evidence map for interviews
+## Implementation evidence map
 
 | Business question | Evidence in this repo |
 | --- | --- |
@@ -65,7 +65,7 @@ The script prints metrics and creates the `artifacts/` folder. **Verified in Git
 | Can you quantify the error trade-off? | Confusion-matrix counts and assumed-cost comparison |
 | Can another engineer inspect your result? | Exported metrics, predictions, fixed random seed, readable code |
 
-**Next integration step:** Replace synthetic data with the previously developed industrial fault classification prototype and its real source dataset, validate the claim F1 0.511→0.649 separately, then develop serving and monitoring layers. Do not combine the original prototype's metrics with these synthetic test metrics.
+**Next integration step:** Run the separately documented AI4I benchmark and report its actual held-out results; then evaluate read-only serving and monitoring layers. Do not conflate synthetic early-warning metrics with same-record classification results.
 
 ## Verified synthetic test results (GitHub Actions)
 
