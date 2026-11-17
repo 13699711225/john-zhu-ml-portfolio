@@ -4,6 +4,15 @@
 
 **Important distinction:** This is a newly created **synthetic-data demonstration**, **not a real Flex factory project**, not a production installation, and not the earlier AI4I-based experiment with reported F1 0.511→0.649 / simulated cost −27%. The synthetic simulator is designed to contain an informative deterioration signal. Its test results must **not** be represented as real-world evidence of model effectiveness.
 
+## New: public AI4I fault-classification benchmark
+
+The new [AI4I baseline](AI4I_BASELINE.md) provides a separate, leakage-aware Random Forest classification experiment using the [UCI AI4I 2020 **synthetic** public dataset](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset). It excludes identifier and failure-mode target columns, performs stratified 60/20/20 train/validation/test splits, chooses an assumed-cost alert threshold on validation only, and exports model and held-out results. The full UCI CSV must be supplied locally and **official benchmark scores are not yet reported**; offline CI uses small fabricated fixtures only. This task predicts the **current-row machine failure label**, **not** a future six-hour event. It does not replace or revalidate the older AI4I experiment reported in the CV.
+
+```bash
+# After downloading the original CSV to data/ai4i2020.csv
+python ai4i_baseline.py --csv data/ai4i2020.csv
+```
+
 ## Interview-ready engineering case study and research roadmap
 
 - [**Flex-oriented interview case study (English)**](FLEX_INTERVIEW_CASE_STUDY.md) — five-slide narrative, measurable reliability KPIs, English technical Q&A, a conditional 90-day proposal, and an explicit boundary between simulated results and factory claims.
