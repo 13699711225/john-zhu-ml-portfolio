@@ -13,12 +13,11 @@ The new [AI4I baseline](AI4I_BASELINE.md) provides a separate, leakage-aware Ran
 python ai4i_baseline.py --csv data/ai4i2020.csv
 ```
 
-## Interview-ready engineering case study and research roadmap
+## Industrial GNN research roadmap
 
-- [**Flex-oriented interview case study (English)**](FLEX_INTERVIEW_CASE_STUDY.md) — five-slide narrative, measurable reliability KPIs, English technical Q&A, a conditional 90-day proposal, and an explicit boundary between simulated results and factory claims.
 - [**Industrial GNN / GDN research roadmap**](INDUSTRIAL_GNN_ROADMAP.md) — sensor-graph hypothesis, RF-first comparison, time-aware validation, graph ablations, and acceptance gates before claiming value.
 
-These are **independent interview and research materials**. Neither document implies collaboration with Flex, access to Flex manufacturing data, or a deployed GNN system.
+This is independent research planning and does not imply collaboration with Flex, access to Flex manufacturing data, or a deployed GNN system.
 
 ## Business problem
 
