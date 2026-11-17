@@ -1,6 +1,6 @@
 # Industrial Graph Learning — Experimental Roadmap
 
-> Research proposal for an independent industrial-AI portfolio, **not** a Flex implementation. The current runnable demo uses **Random Forest**, not GNN or GDN.
+> Independent research roadmap. The currently runnable baseline uses **Random Forest**, not GNN or GDN.
 
 ## Core hypothesis
 
