@@ -1,6 +1,6 @@
 # AI4I 2020 — Public Synthetic Tabular Classification Benchmark
 
-This is an **independent, reproducible portfolio benchmark**. The UCI authors explicitly describe AI4I as **synthetic**, designed to resemble industrial predictive maintenance data. It is **not plant telemetry**, **not a Flex project**, and **not a time-series early-warning evaluation**.
+This is an **independent, reproducible portfolio benchmark**. The UCI authors explicitly describe AI4I as **synthetic**, designed to resemble industrial predictive maintenance data. It is **not plant telemetry** and **not a time-series early-warning evaluation**.
 
 **Dataset:** [UCI AI4I 2020 Predictive Maintenance Dataset](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset) (ID 601), DOI [10.24432/C5HS5C](https://doi.org/10.24432/C5HS5C), CC BY 4.0. Dataset citation: *AI4I 2020 Predictive Maintenance Dataset* (2020), UCI Machine Learning Repository. Original paper: S. Matzka, *Explainable Artificial Intelligence for Predictive Maintenance Applications* (2020).
 
@@ -44,20 +44,6 @@ Outputs are written to the ignored `artifacts/ai4i/` directory:
 - `average_precision` and ROC-AUC describe ranking, not calibrated probability reliability. Calibration is not implemented.
 - The CNY 300 false-positive and CNY 6,000 false-negative *row-level* costs are illustrative, **not** actual maintenance costs. Rows are not confirmed work orders.
 
-## Interview explanations (English)
-
-**Q: Why is this different from your earlier synthetic demo?**  
-*A:* “AI4I is an externally published synthetic benchmark for same-record fault classification. My earlier demo intentionally generated pre-failure time-series patterns. They are distinct tasks and use different evaluation splits.”
-
-**Q: Why exclude TWF/HDF/PWF/OSF/RNF?**  
-*A:* “They describe the failure outcomes, so including them as predictors would leak labels. I use only operating variables available to the classifier.”
-
-**Q: Why optimize the classification threshold separately?**  
-*A:* “The model produces a risk score; the alert threshold reflects a decision trade-off. I select it using the validation set, then report untouched test metrics. The economic figures are hypothetical, not measured factory savings.”
-
-**Q: Would you deploy this to a factory?**  
-*A:* “Not from this benchmark alone. I would need authorized timestamped sensor streams, event definitions, equipment holdout, early-warning lead-time analysis, calibration, monitoring and an engineer-approved shadow-mode pilot.”
-
 ## Next engineering step
 
-After validating and documenting official benchmark numbers, implement a **read-only simulated MQTT → PostgreSQL → Python inference → Grafana** integration. Keep simulated and public benchmark data clearly labeled and never imply deployment to Flex.
+After validating and documenting official benchmark numbers, implement a **read-only simulated MQTT → PostgreSQL → Python inference → Grafana** integration. Keep simulated and public benchmark data clearly labeled and never imply deployment to any industrial plant.
